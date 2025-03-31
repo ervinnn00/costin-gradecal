@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Grade Calculator</title>
+<style>
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+table {
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+
+<script>
+    // Input using prompt
+    var quizzes = parseFloat(prompt("Enter Quizzes Grade:"));
+    var classStanding = parseFloat(prompt("Enter Class Standing Grade:"));
+    var attendance = parseFloat(prompt("Enter Attendance Grade:"));
+    var majorExam = parseFloat(prompt("Enter Major Exam Grade:"));
+    var prelim = parseFloat(prompt("Enter Prelim Grade:"));
+    var midterm = parseFloat(prompt("Enter Midterm Grade:"));
+    var final = parseFloat(prompt("Enter Final Grade:"));
+
+    // Compute component grades
+    var componentGrade = (quizzes * 0.3) + (majorExam * 0.5) + (classStanding * 0.1) + (attendance * 0.1);
+
+    // Compute total grade
+    var totalGrade = (prelim * 0.3) + (midterm * 0.3) + (final * 0.4);
+
+    // Determine remark
+    var remark;
+    if (totalGrade >= 98 && totalGrade <= 100) {
+        remark = "Outstanding";
+    } else if (totalGrade >= 95 && totalGrade <= 97) {
+        remark = "Very Satisfactory";
+    } else if (totalGrade >= 92 && totalGrade <= 94) {
+        remark = "Satisfactory";
+    } else if (totalGrade >= 89 && totalGrade <= 91) {
+        remark = "Very Good";
+    } else if (totalGrade >= 86 && totalGrade <= 88) {
+        remark = "Good";
+    } else if (totalGrade >= 83 && totalGrade <= 85) {
+        remark = "Above Average";
+    } else if (totalGrade >= 80 && totalGrade <= 82) {
+        remark = "Average";
+    } else if (totalGrade >= 77 && totalGrade <= 79) {
+        remark = "Below Average";
+    } else if (totalGrade >= 75 && totalGrade <= 76) {
+        remark = "Passed";
+    } else {
+        remark = "Failed";
+    }
+
+    // Table output
+    document.write('<table border=2 cellpadding="10" cellspacing="10" align=center>');
+    document.write('<h1>GRADE INFORMATION</h1>');
+    var student_name = prompt("Enter your name: ");
+    var age = prompt("Enter your age: ");
+    document.write("<tr><th>Name</th><td>" + student_name + "</td></tr>");
+    document.write("<tr><th>Age</th><td>" + age + "</td></tr>");
+    document.write("<tr><th>Total Grade</th><td>" + totalGrade.toFixed(2) + "</td></tr>");
+    document.write("<tr><th>Remark</th><td>" + remark + "</td></tr>"); // Corrected line
+    document.write("</table>");
+</script>
+
+</body>
+</html>
