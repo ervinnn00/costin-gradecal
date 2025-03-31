@@ -6,32 +6,75 @@
 body {
     font-family: sans-serif;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
     background-color: #f4f4f4;
-}
-table {
-    width: 50%;
-    margin: 20px auto;
-    border-collapse: collapse;
+    padding: 20px;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: left;
+.grade-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+    overflow: hidden;
 }
 
-th {
-    background-color: #f0f0f0;
+.grade-row {
+    display: flex;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
 }
 
-h1 {
+.grade-row:last-child {
+    border-bottom: none;
+}
+
+.grade-header {
+    font-weight: 600;
+    color: #333;
+    width: 40%;
+    padding-right: 15px;
+}
+
+.grade-data {
+    color: #666;
+    width: 60%;
+    word-break: break-word;
+}
+
+h1.title {
     text-align: center;
-    font-size: 2.5em;
-    margin-bottom: 20px;
+    color: #2c3e50;
+    margin: 0 0 20px 0;
+    font-size: 2.2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 480px) {
+    .grade-row {
+        flex-direction: column;
+        padding: 12px 15px;
+    }
+    
+    .grade-header,
+    .grade-data {
+        width: 100%;
+    }
+    
+    .grade-header {
+        padding-bottom: 5px;
+    }
+    
+    h1.title {
+        font-size: 1.8em;
+    }
 }
 </style>
 </head>
@@ -77,16 +120,33 @@ h1 {
         remark = "Failed";
     }
 
-    // Table output
-    document.write('<table border=2 cellpadding="10" cellspacing="10" align=center>');
-    document.write('<h1>GRADE INFORMATION</h1>');
+    // New output structure
+    document.write('<h1 class="title">GRADE INFORMATION</h1>');
+    document.write('<div class="grade-container">');
     var student_name = prompt("Enter your name: ");
     var age = prompt("Enter your age: ");
-    document.write("<tr><th>Name</th><td>" + student_name + "</td></tr>");
-    document.write("<tr><th>Age</th><td>" + age + "</td></tr>");
-    document.write("<tr><th>Total Grade</th><td>" + totalGrade.toFixed(2) + "</td></tr>");
-    document.write("<tr><th>Remark</th><td>" + remark + "</td></tr>"); // Corrected line
-    document.write("</table>");
+    
+    document.write('<div class="grade-row">');
+    document.write('<div class="grade-header">Name</div>');
+    document.write('<div class="grade-data">' + student_name + '</div>');
+    document.write('</div>');
+    
+    document.write('<div class="grade-row">');
+    document.write('<div class="grade-header">Age</div>');
+    document.write('<div class="grade-data">' + age + '</div>');
+    document.write('</div>');
+    
+    document.write('<div class="grade-row">');
+    document.write('<div class="grade-header">Total Grade</div>');
+    document.write('<div class="grade-data">' + totalGrade.toFixed(2) + '</div>');
+    document.write('</div>');
+    
+    document.write('<div class="grade-row">');
+    document.write('<div class="grade-header">Remark</div>');
+    document.write('<div class="grade-data">' + remark + '</div>');
+    document.write('</div>');
+    
+    document.write('</div>');
 </script>
 
 </body>
